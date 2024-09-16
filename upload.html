@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload .m4a File</title>
+</head>
+<body>
+    <h1>Upload .m4a File for Transcription and Translation</h1>
+    <form action="http://127.0.0.1:8000/translate/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".m4a" required>
+        <br><br>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
