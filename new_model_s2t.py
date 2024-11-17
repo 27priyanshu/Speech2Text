@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 import tempfile
 import soundfile as sf
+from datetime import datetime
 import google.generativeai as genai
 import pandas as pd
 import pyodbc
@@ -19,7 +20,8 @@ genai.configure(api_key=API_KEY)
 # Function to structure transcription using Gemini
 def structure_transcription_with_gemini(text):
     try:
-        current_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        # Use ISO format for date to ensure SQL Server can parse it correctly
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         prompt = f"""
         Given the following transcribed text, extract and structure the information into the following JSON format:
         {{
@@ -52,6 +54,7 @@ def structure_transcription_with_gemini(text):
     except Exception as e:
         return {"error": f"Error structuring transcription with Gemini: {str(e)}"}
 
+        
 # Transcription function (Hindi recognition)
 def transcribe_audio(file_path):
     recognizer = sr.Recognizer()
